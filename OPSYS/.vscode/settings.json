@@ -1,0 +1,34 @@
+{
+    "window.zoomLevel": 1.3,
+    // "editor.fontSize": 12,
+    "spellright.language": [
+        "hu_HU"
+    ],
+
+    "remote.extensionKind": {
+        //  "ban.spellright": [ "workspace" ]
+         "ban.spellright": [ "ui" ]
+   //     "msjsdiag.debugger-for-chrome": [ "workspace" ]
+    },
+
+    "spellright.documentTypes": [
+        "h",
+        "c"
+    ],
+
+    // "spellright.spellContext": "comments strings", 
+    "spellright.spellContext": "comments strings", 
+    "spellright.spellContextByClass": {
+        "c": "strings comments"
+    },
+    "files.associations": {
+        "*.js": "javascript",
+        "*.h": "c",
+    }
+    /*
+    "spellright.languageContext": {
+      //  "strings": [ "hu", "en-US" ],
+        "comments": [ "hu" ]
+    },
+    */
+}
