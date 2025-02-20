@@ -6,6 +6,6 @@
 
 int main ()
 {
-    printf ("Helló!\n");
+    printf ("Helló bello!\n");
     return 0;
 }

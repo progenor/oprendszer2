@@ -29,9 +29,9 @@ int main( int argc, char * argv[] )
 
     //környezeti változók végigjárása
     //hogy néz ki az environ lista?
- 	//for ( ; *environ != NULL; environ++){
-	//	printf ("%s\n",*environ);
-	//}	
+ 	for ( ; *environ != NULL; environ++){
+		printf ("%s\n",*environ);
+	}	
     
     exit(EXIT_SUCCESS);
 }	
