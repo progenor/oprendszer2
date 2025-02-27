@@ -23,7 +23,7 @@ int main(int argc, char * argv[])
     int len;
 
     //TODO: mennyi az argc?
-    if (argc!= ... ) {
+    if (argc!= 3 ) {
         printf("használat: %s fájlnév sztring\n", argv[0]); 
         exit(EXIT_FAILURE);
     }
@@ -32,7 +32,7 @@ int main(int argc, char * argv[])
     //TODO: c) pont, '\0' cseréje
 
     //TODO: nyissuk meg a fájlt a feladat által kért módban 
-    fd = ...
+    fd = open(argv[1], O_WRONLY | O_CREAT | O_EXCL,  0644);
 
     //ellenőrizzük, hogy sikerült-e
     if (fd<0){
@@ -40,7 +40,7 @@ int main(int argc, char * argv[])
     }
 
     //TODO: írjuk be a sztringet a fájlba
-    n = ...
+    n = write(fd, buff, strlen(buff));
 
     //TODO: ellenőrizzük, hogy sikerült-e, ha nem, akkor hiba és kilépés 
     if (n<0){
