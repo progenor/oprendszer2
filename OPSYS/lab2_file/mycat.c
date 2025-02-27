@@ -12,14 +12,7 @@
  * írjuk át a programot úgy, hogy a másolást a két esetben ugyanaz a függvény végezze!
  */
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>	  
-#include <errno.h>	  
-
+#include "myinclude.h"
 #define LEN 1024  //olvasási puffer hossz
 
 int main (int argc, char * argv[])
@@ -55,8 +48,7 @@ int main (int argc, char * argv[])
         for (i=1; i<argc; i++) { /* amíg van még paraméter */
             /* nyitás csak olvasásra */
             if ( ( fd = open (argv[i], O_RDONLY )) < 0) { 
-                fprintf (stderr,"nem lehet megnyitni a %s állományt\n",argv[i]);
-                exit(EXIT_FAILURE);
+                syserr("open");
             }
             /* másolás */
             while ( (n = read (fd, buff, LEN))>0 ) {
