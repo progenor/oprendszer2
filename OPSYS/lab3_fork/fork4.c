@@ -13,10 +13,10 @@
 
 int main(int argc, char** argv) {
     int c;
-    int child = fork();
+    int child = fork(); // mind a 2 ben lefut
     c = 5;
 
-    if (child == 0) {
+    if (child == 0) { // masodik folyamat
         c += 5;
     } else {
         child = fork();
