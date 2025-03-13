@@ -22,10 +22,10 @@ int main (int argc, char * argv[])
         //egyszerre egyet, kiprobalni es utana
         //magyarazatba tenni
      
-      // execl("/usr/bin/sort","/usr/bin/sort", "-rn", "szam.txt", (char*) NULL); 
+        execl("/usr/bin/sort","/usr/bin/sort", "-rn", "../szam.txt", (char*) NULL); 
     
-    //    char parancs[]="sort -nr szam.txt";
-    //    if(parancssor(parancs)==EXIT_FAILURE) syserr("execvp");
+       char parancs[]="sort -nr szam.txt";
+       if(parancssor(parancs)==EXIT_FAILURE) syserr("execvp");
         //ide nem ter vissza a fiu ha helyes
 
         syserr("execl");

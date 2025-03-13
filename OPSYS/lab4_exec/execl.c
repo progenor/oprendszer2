@@ -7,7 +7,6 @@
 int main(int argc, char* argv[]) {
     pid_t pid;   // folyamat azonosító
     int status;  // kilépési állapot tárolására
-
     pid = fork();  // új folyamat
     if (pid < 0) {
         syserr("fork");
