@@ -13,6 +13,7 @@ int main() {
     /* a pipe függvény hozza létre a csővezeték azonosítóit
      * ezt a fork() előtt le kell futtatni
      */
+    setbuf(stdout, NULL);
     int pfd[2]; /* a csővezeték azonosítói */
     if (pipe(pfd) < 0) {
         syserr("pipe");
@@ -34,7 +35,6 @@ int main() {
         if (write(pfd[1], a, strlen(a) + 1) < 0) {
             syserr("write");
         }
-
         /* a csövet használat után le kell zárni, ekkor tudja meg az olvasó
            folyamat, hogy vége az adat átvitelnek */
         if (close(pfd[1]) < 0) {
@@ -52,9 +52,11 @@ int main() {
            */
         int n;
         char b[MAX];  // puffer
-        if ((n = read(pfd[0], b, MAX)) < 0) {
-            syserr("read");
+        while ((n = read(pfd[0], b, MAX)) > 0) {
+            printf("apa kiolvasott: %d\n", n);
         }
+        if(n<0)syserr("read");
+        printf("read vege\n");
 
         printf("az apa kiolvasta amit fiú folyamat írt: %s\n", b);
 
