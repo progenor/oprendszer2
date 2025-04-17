@@ -2,7 +2,8 @@
 #define SIZE 128
 
 // az üzenet típusa
-typedef struct {
+typedef struct
+{
     long mtype;
     char mtext[SIZE];
 } message_buf;
