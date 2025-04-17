@@ -12,7 +12,7 @@
       //   "args": [],
       //ha van parancssori argumentuma a debugolt programnak,
       //az üres tömb helyett fel kell sorolni:
-      "args": ["../be1.txt", "be2.txt"],
+      "args": ["./a.txt", "./b.txt"],
       "stopAtEntry": false, //stop in main if true - leáll a main elején ha ez igaz
       "cwd": "${fileDirname}", //ide lép végrehajtás előtt
       //ha kellenek más környezeti változók
