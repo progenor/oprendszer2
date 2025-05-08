@@ -1,23 +1,25 @@
 #include "myinclude.h"
 
-//szerver kulcs
-//ezt használjuk közös kulcsként
-#define SVRKEY 0x123456789
+// szerver kulcs
+// ezt használjuk közös kulcsként
+#define SVRKEY 0x123456
 
-//kliens üzenete
-typedef struct {
+// kliens üzenete
+typedef struct
+{
     long mtype;
-    long data; //hely adatok számára (pid)
+    long pid; // hely adatok számára (pid)
 } client_msg;
 
-//kliens üzenet hossz
+// kliens üzenet hossz
 #define CSIZE sizeof(client_msg) - sizeof(long)
 
-//szerver üzenet
-typedef struct {
+// szerver üzenet
+typedef struct
+{
     long mtype;
     int seq;
 } server_msg;
 
-//szerver üzenet hossz
+// szerver üzenet hossz
 #define SSIZE sizeof(server_msg) - sizeof(long)
