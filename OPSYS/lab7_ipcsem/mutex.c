@@ -18,28 +18,31 @@
 // egy karaktert irnak ki (str), mindegyik mas karaktert
 // varnak t masodpercig a kritikus szakaszban
 // a feladatot k-szor vegzik el
-void fiu_feladata(int semid, char *str, int t, int k) {
+void fiu_feladata(int semid, char *str, int t, int k)
+{
     // szemafor műveletek
     struct sembuf up = {0, +1, 0};
     struct sembuf down = {0, -1, 0};
 
     pid_t pid1 = getpid();
-    for (int i = 0; i < k; i++) {
+    for (int i = 0; i < k; i++)
+    {
         // kivon a szemforbol
-        if (semop(semid, &down, 1) == -1) syserr("semop");
+        if (semop(semid, &down, 1) == -1)
+            syserr("semop");
         // kritikus szakasz
-        printf("%d: a %s-t kiíró fiú bejutott a kritikus részbe és vár: %d szekundumot\n", pid1, str, t);
         sleep(t);
         printf("kiir %s\n", str);
-        printf("%d: a %s-t kiíró fiú kilép a kritikus részből\n", pid1, str);
 
         // kritikus szakasz vege visszaallitja a szemafort
-        if (semop(semid, &up, 1) == -1) syserr("semop");
+        if (semop(semid, &up, 1) == -1)
+            syserr("semop");
     }
     exit(EXIT_SUCCESS);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     int semid;
     pid_t p;
     setbuf(stdout, NULL);
@@ -58,29 +61,32 @@ int main(int argc, char **argv) {
     if ((p = fork()) == -1)
         syserr("fork");
 
-    if (p == 0) {                        // elso fiu
-        fiu_feladata(semid, "a", 1, 3);  // feladat utan a fiu a fuggvenyben kilep
+    if (p == 0)
+    {                                   // elso fiu
+        fiu_feladata(semid, "a", 1, 3); // feladat utan a fiu a fuggvenyben kilep
     }
 
     if ((p = fork()) == -1)
         syserr("fork");
 
-    if (p == 0) {  // masodik fiu
+    if (p == 0)
+    { // masodik fiu
         fiu_feladata(semid, "b", 1, 3);
     }
 
     if ((p = fork()) == -1)
         syserr("fork");
 
-    if (p == 0) {  // harmadik fiu
+    if (p == 0)
+    { // harmadik fiu
         fiu_feladata(semid, "c", 1, 3);
     }
 
     wait(NULL);
     wait(NULL);
-    wait(NULL);  // apa mindharmat megvarja
+    wait(NULL); // apa mindharmat megvarja
 
-    if (semctl(semid, 0, IPC_RMID, 0) == -1)  // szemafor tomb torlese
+    if (semctl(semid, 0, IPC_RMID, 0) == -1) // szemafor tomb torlese
         syserr("semctl2");
 
     printf("apa kilep\n");
