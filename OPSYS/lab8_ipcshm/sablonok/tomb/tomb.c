@@ -30,7 +30,7 @@ static int *mem; // megosztott memória mutatója
 void fiu_feladata(int i)
 {
     struct sembuf fdown[] = {{mutex, -1, 0}, {empty, -1, 0}};
-    struct sembuf fup[] = {{mutex, 1, 0}, {full, 1, 0}};
+    struct sembuf fup[] = {{mutex, +1, 0}, {full, +1, 0}};
 
     printf("start: %d fiú pid=%d, csoport=%d\n", i, getpid(), getpgrp());
     while (1)
@@ -90,7 +90,7 @@ int main(int argc, char **argv)
 
     // TODO: előkészítés: szemafor + szemafor init + memória + felcsatolás
 
-    if ((semid = semget(IPC_PRIVATE, 1, IPC_CREAT | 0666)) == -1)
+    if ((semid = semget(IPC_PRIVATE, 3, IPC_CREAT | 0666)) == -1)
     {
         syserr("semget");
     }
